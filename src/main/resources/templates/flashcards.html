@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Forest's FlashCards</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{styles.css}" href="../static/styles.css"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row header">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                FlashCards
+            </h3>
+        </div>
+    </div>
+    <div class="row text-center cardRow">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 card cardQuestion text-center">
+            <h3>
+               Question
+            </h3>
+            <p th:text="${question}">Question text here</p>
+        </div>
+        <div class="col-md-2">
+            <h6>Total Cards</h6>
+            <p th:text="${cardCountTotal}">Card Count</p>
+            <a class="btn btn-default" href="flashcards.html" th:href="@{'/addQuestion'}">Add Question</a>
+
+        </div>
+        <div class="col-md-4 card cardAnswer text-center">
+            <h3>
+                Answer
+            </h3>
+            <p th:text="${answer}">Answer text here</p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row buttonRow">
+        <div class="col-md-4 text-center">
+            <a class="btn btn-default" href="flashcards.html" th:href="@{'/nextCard'}">Next Question</a>
+        </div>
+        <div class="col-md-4 text-center">
+
+            <a class="btn btn-default" href="flashcards.html" th:href="@{'/showAnswer'}">Show Answer</a>
+        </div>
+        <div class="col-md-4 text-center">
+
+            <a class="btn btn-default" href="flashcards.html" th:href="@{'/markQuestion'}">Mark Card</a>
+        </div>
+    </div>
+    <div class="row tableArea">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                Marked Questions
+            </h3>
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>
+                       Question
+                    </th>
+                    <th>
+                       Answer
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="flashcard : ${markedQuestions}">
+                    <td th:text="${flashcard.getQuestion()}">
+                        Question
+                    </td>
+                    <td th:text="${flashcard.getAnswer()}">
+                        Answer
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
